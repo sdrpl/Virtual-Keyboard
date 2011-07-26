@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" defaultlocale="en" version="2.0">
+  <name xml:lang="en">Virtual Keyboard</name>
+  <name xml:lang="pl">Klawiatura Ekranowa</name>
+  <description xml:lang="en">Virtual keyboard whenever you need it. Protect your passwords. Be safe.</description>
+  <description xml:lang="pl">Klawiatura ekranowa zawsze pod ręką. Chroń swoje hasła. Pozostań bezpieczny.</description>
+  <author href="http://www.dawidpajak.com/">Dawid Pająk</author>
+  <icon src="img/64.png" />
+  <preference name="defaultLayout"        value="[]" />
+  <preference name="defaultLayoutCode"    value="us" />
+  <preference name="keyboardLayouts"      value="[]" />
+  <preference name="showButton"           value="true" />
+  <preference name="toolbarIcon"          value="18" />
+  <preference name="customShortcut_Ctrl"  value="true" />
+  <preference name="customShortcut_Alt"   value="false" />
+  <preference name="customShortcut_Shift" value="false" />
+  <preference name="customShortcut"       value="45" />
+  <preference name="showOnDoubleClick"    value="false" />
+  <preference name="highlightKeysOnClick" value="false" />
+  <preference name="useDragHandler"       value="false" />
+</widget>

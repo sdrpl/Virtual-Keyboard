@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="js/layouts.js"></script>
+    <script type="text/javascript">
+      window.addEventListener('load', function()
+      {
+        /**
+         * Wrap broadcasts in extension's prefix.
+         */
+        broadcastMessagePrefix = function(data)
+        {
+          return opera.extension.broadcastMessage({
+            'virtualKeyboardOexBroadcast': data
+          });
+        };
+        
+        /**
+         * Verify icon setting.
+         */
+        if (!widget.preferences.toolbarIcon || 
+            ['18', 'oxygen', 'google', 'youtube'].indexOf(widget.preferences.toolbarIcon) < 0)
+          widget.preferences.toolbarIcon = 18;
+        
+        /**
+         * Create button.
+         */
+        var button = opera.contexts.toolbar.createItem({
+          disabled: false,
+          title:    'Virtual Keyboard',
+          icon:     'img/' + widget.preferences.toolbarIcon + '.png',
+          onclick:  function()
+          {
+            var focused = opera.extension.tabs.getFocused();
+            if (focused) focused.postMessage({ 'showKeyboard': true });
+          }
+        });
+        
+        /**
+         * If button enabled in preferences.
+         */
+        if (widget.preferences.showButton != 'false')
+          opera.contexts.toolbar.addItem(button);
+        
+        /**
+         * On preferences change.
+         */
+        window.addEventListener('storage', function(e)
+        {
+          switch (e.key)
+          {
+            case 'showButton':
+              if (widget.preferences.showButton != 'false')
+                opera.contexts.toolbar.addItem(button);
+              else
+                opera.contexts.toolbar.removeItem(button);
+              break;
+            case 'toolbarIcon':
+              button.icon = 'img/' + widget.preferences.toolbarIcon + '.png';
+              break;
+          }
+        }, false);
+        
+        /**
+         * On new script connect.
+         */
+        opera.extension.addEventListener('connect', function(e)
+        {
+          e.source.postMessage({ 'virtualKeyboardOexBroadcast': { 'config': {
+            'defaultLayout':         keyboardLayouts[widget.preferences.defaultLayout] || keyboardLayouts['us'],
+            'defaultLayoutCode':    (widget.preferences.defaultLayout                  || 'us'),
+            'keyboardLayouts':       keyboardLayoutsList,
+            'customShortcut_Ctrl':  (widget.preferences.customShortcut_Ctrl            != 'false'),
+            'customShortcut_Alt':   (widget.preferences.customShortcut_Alt             == 'true'),
+            'customShortcut_Shift': (widget.preferences.customShortcut_Shift           == 'true'),
+            'customShortcut':        widget.preferences.customShortcut                 || 45,
+            'showOnDoubleClick':    (widget.preferences.showOnDoubleClick              == 'true'),
+            'highlightKeysOnClick': (widget.preferences.highlightKeysOnClick           == 'true'),
+            'useDragHandler':       (widget.preferences.useDragHandler                 == 'true')
+          }}});
+        }, false);
+        
+        /**
+         * On message received.
+         */
+        opera.extension.addEventListener('message', function(e)
+        {
+          /**
+           * Send extension's version to repo.js.
+           */
+          if (e.data.getVersion)
+            e.source.postMessage({ 'version': widget.version });
+          
+          /**
+           * Show keyboard request from all-pages.js (double click or keyboard shortcut).
+           */
+          else if (e.data.showKeyboard)
+          {
+            var focused = opera.extension.tabs.getFocused();
+            if (focused) focused.postMessage({ 'showKeyboard': true });
+          }
+          
+          /**
+           * Hide keyboard request from all-pages.js (document click).
+           */
+          else if (e.data.hideKeyboard)
+          {
+            var focused = opera.extension.tabs.getFocused();
+            if (focused) focused.postMessage({ 'hideKeyboard': true });
+          }
+          
+          /**
+           * Key clicked request from keyboard.
+           */
+          else if (e.data.keyClicked)
+            broadcastMessagePrefix({ 'updateFocused': true, 'value': e.data.value });
+          
+          /**
+           * Keep focus request from keyboard.
+           */
+          else if (e.data.keepFocus)
+            broadcastMessagePrefix({ 'keepFocus': true });
+          
+          /**
+           * Send new layout to keyboard.
+           */
+          else if (e.data.requestLayout)
+            e.source.postMessage({ 'changeLayout': keyboardLayouts[e.data.requestLayout] });
+        }, false);
+      }, false);
+      
+      /**
+       * Open welcome page after extension's install/upgrade.
+       */
+      if (!widget.preferences.version || widget.preferences.version != widget.version)
+      {
+        widget.preferences.version = widget.version;
+        opera.extension.tabs.create({
+          'url': 'widget://' + document.location.host + '/release-notes.html',
+          'focused': true
+        });
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

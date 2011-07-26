@@ -1,0 +1,106 @@
+body
+{
+  font-family: helvetica, arial, sans, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  color: #000;
+  background: -o-linear-gradient(top, #f8f3ea, #fff 20px);
+  background: linear-gradient(top, #f8f3ea, #fff 20px);
+  padding: 0;
+  margin: 0;
+}
+
+a
+{
+  color: #00f;
+  text-decoration: underline;
+}
+
+a:hover
+{
+  text-decoration: none;
+}
+
+div#container
+{
+  width: 600px;
+  background-color: #eee;
+  box-shadow: inset 0 0 20px #ccc, 0 0 100px #eee;
+  border-radius: 5px;
+  position: relative;
+  padding: 25px 15px 5px;
+  margin: 60px auto 0;
+}
+
+h1
+{
+  height: 64px;
+  line-height: 54px;
+  font-size: 28px;
+  font-weight: normal;
+  color: #b33;
+  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #ccc;
+  background: transparent url('../img/64.png') no-repeat top left;
+  position: absolute;
+  top: -37px;
+  left: 15px;
+  padding: 0 0 0 70px;
+  margin: 0 0 20px;
+}
+
+ul.options
+{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.options > li
+{
+  line-height: 40px;
+  list-style: none;
+  clear: both;
+  padding: 0;
+  margin: 0;
+}
+
+ul.options > li:not(:last-child)
+{
+  border-bottom: 1px dotted #666;
+}
+
+ul.options > li label
+{
+  width: 220px;
+  display: block;
+  float: left;
+}
+
+ul.options > li label[title]
+{
+  cursor: help;
+}
+
+img
+{
+  vertical-align: middle;
+}
+
+footer
+{
+  width: 600px;
+  line-height: 15px;
+  text-align: center;
+  position: absolute;
+  bottom: -100px;
+}
+
+div#links > a
+{
+  margin: 0 10px;
+}
+
+div#copyrights > p
+{
+  padding: 0;
+}

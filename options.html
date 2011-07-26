@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Virtual Keyboard &ndash; preferences</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/options.css" media="screen" />
+    <link rel="shortcut icon" href="img/16.png" />
+    <script type="text/javascript" src="lang.js"></script>
+    <script type="text/javascript" src="js/locales.js"></script>
+    <script type="text/javascript">
+      window.addEventListener('DOMContentLoaded', function()
+      {
+        /**
+         * Default layout.
+         */
+        var defaultLayout = document.querySelector('#defaultLayout');
+        
+        defaultLayout.value = widget.preferences.defaultLayout || 'us';
+        
+        defaultLayout.addEventListener('change', function()
+        {
+          widget.preferences.defaultLayout = this.value;
+        }, false);
+        
+        /**
+         * Show button.
+         */
+        var showButton = document.querySelector('#showButton');
+        
+        showButton.checked = (widget.preferences.showButton != 'false');
+        
+        showButton.addEventListener('click', function()
+        {
+          widget.preferences.showButton = this.checked;
+        }, false);
+        
+        /**
+         * Toolbar icon.
+         */
+        var toolbarIcon = document.querySelectorAll('input[name="toolbarIcon"]');
+        
+        for (var i = 0; i < toolbarIcon.length; ++i)
+        {
+          if (toolbarIcon[i].value == widget.preferences.toolbarIcon)
+            toolbarIcon[i].checked = true;
+          
+          toolbarIcon[i].addEventListener('click', function()
+          {
+            widget.preferences.toolbarIcon = this.value;
+          }, false);
+        }
+        
+        /**
+         * Custom shortcut.
+         */
+        var customShortcut_Ctrl  = document.querySelector('#customShortcut_Ctrl');
+        var customShortcut_Alt   = document.querySelector('#customShortcut_Alt');
+        var customShortcut_Shift = document.querySelector('#customShortcut_Shift');
+        var customShortcut       = document.querySelector('#customShortcut');
+        
+        customShortcut_Ctrl.checked  = (widget.preferences.customShortcut_Ctrl  != 'false');
+        customShortcut_Alt.checked   = (widget.preferences.customShortcut_Alt   == 'true');
+        customShortcut_Shift.checked = (widget.preferences.customShortcut_Shift == 'true');
+        customShortcut.value         =  widget.preferences.customShortcut || 45;
+        
+        if (/Mac/.test(window.navigator.platform))
+        {
+          /**
+           * Change Ctrl/Alt labels for Mac users.
+           */
+          customShortcut_Ctrl.nextElementSibling.innerText = '\u2318';
+          customShortcut_Alt.nextElementSibling.innerText  = '\u2325';
+        }
+        
+        var customShortcutCheck = function()
+        {
+          /**
+           * Enable all.
+           */
+          customShortcut_Ctrl.disabled  = 
+          customShortcut_Alt.disabled   = 
+          customShortcut_Shift.disabled = false;
+          
+          var checked = document.querySelectorAll('input[id^="customShortcut_"]:checked');
+          
+          if (checked.length < 2)
+          {
+            /**
+             * If one modifier key checked only...
+             * Disable it.
+             */
+            checked[0].disabled  = true;
+          }
+        };
+        customShortcutCheck();
+        
+        customShortcut_Ctrl.addEventListener('click', function()
+        {
+          widget.preferences.customShortcut_Ctrl = this.checked;
+          customShortcutCheck();
+        }, false);
+        customShortcut_Alt.addEventListener('click', function()
+        {
+          widget.preferences.customShortcut_Alt = this.checked;
+          customShortcutCheck();
+        }, false);
+        customShortcut_Shift.addEventListener('click', function()
+        {
+          widget.preferences.customShortcut_Shift = this.checked;
+          customShortcutCheck();
+        }, false);
+        customShortcut.addEventListener('change', function()
+        {
+          widget.preferences.customShortcut = this.value;
+        }, false);
+        
+        /**
+         * Show keyboard on double click.
+         */
+        var showOnDoubleClick = document.querySelector('#showOnDoubleClick');
+        
+        showOnDoubleClick.checked = (widget.preferences.showOnDoubleClick == 'true');
+        
+        showOnDoubleClick.addEventListener('click', function()
+        {
+          widget.preferences.showOnDoubleClick = this.checked;
+        }, false);
+        
+        /**
+         * Highlight keys on click.
+         */
+        var highlightKeysOnClick = document.querySelector('#highlightKeysOnClick');
+        
+        highlightKeysOnClick.checked = (widget.preferences.highlightKeysOnClick == 'true');
+        
+        highlightKeysOnClick.addEventListener('click', function()
+        {
+          widget.preferences.highlightKeysOnClick = this.checked;
+        }, false);
+        
+        /**
+         * Use separate drag handler.
+         */
+        var useDragHandler = document.querySelector('#useDragHandler');
+        
+        useDragHandler.checked = (widget.preferences.useDragHandler == 'true');
+        
+        useDragHandler.addEventListener('click', function()
+        {
+          widget.preferences.useDragHandler = this.checked;
+        }, false);
+      }, false);
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <h1 class="title lang">Virtual Keyboard &ndash; preferences</h1>
+      <form>
+        <ul class="options">
+          <li>
+            <label for="defaultLayout" title="This is layout set by default for keyboard when you open it first time on page or reload the page. You can always change current layout temporarily by clicking on blue button in keyboard's bottom right corner.">Default layout</label>
+            <select id="defaultLayout" name="defaultLayout" size="1">
+              <optgroup label="QWERTY">
+                <option value="da">Danish</option>
+                <option value="it">Italian</option>
+                <option value="no">Norwegian</option>
+                <option value="pl1">Polish (Programmers)</option>
+                <option value="po">Portuguese</option>
+                <option value="sp">Spanish</option>
+                <option value="sw">Swedish</option>
+                <option value="tuq">Turkish Q</option>
+                <option value="us" selected="true">US English</option>
+              </optgroup>
+              <optgroup label="QWERTZ">
+                <option value="cz">Czech</option>
+                <option value="gr">German</option>
+                <option value="sl">Slovak</option>
+              </optgroup>
+              <optgroup label="AZERTY">
+                <option value="fr">French</option>
+              </optgroup>
+              <optgroup label="Non-QWERTY">
+                <option value="tuf">Turkish F</option>
+              </optgroup>
+              <optgroup label="Non-Latin">
+                <option value="a1">Arabic (101)</option>
+                <option value="a2">Arabic (102)</option>
+                <option value="a3">Arabic (102) AZERTY</option>
+                <option value="blr">Belarusian</option>
+                <option value="ru">Russian</option>
+                <option value="ur">Ukrainian</option>
+              </optgroup>
+            </select>
+          </li>
+          <li>
+            <label for="showButton" title="This may be good if you do not like using keyboard shortcuts to enable virtual keyboard (lol!) or you have no real keyboard. However if you feel this extra button useless or need more space on your address bar &mdash; disable it.">Show button in address bar</label>
+            <input id="showButton" name="showButton" type="checkbox" />
+          </li>
+          <li>
+            <label for="toolbarIcon" title="Change icon displayed in toolbar's button if you think the default one is not cool enough ;)">Button's icon</label>
+            <input name="toolbarIcon" type="radio" value="18" checked="checked" /> <img src="img/18.png" alt="Default" />
+            <input name="toolbarIcon" type="radio" value="oxygen" /> <img src="img/oxygen.png" alt="Oxygen" title="Oxygen" />
+            <input name="toolbarIcon" type="radio" value="google" /> <img src="img/google.png" alt="Google" title="Google" />
+            <input name="toolbarIcon" type="radio" value="youtube" /> <img src="img/youtube.png" alt="YouTube" title="YouTube" />
+          </li>
+          <li>
+            <label for="customShortcut" title="Note that some keyboard shortcuts may already be reserved by Opera browser or your operating system. In such case it won't work.">Keyboard shortcut</label>
+            <input id="customShortcut_Ctrl" name="customShortcut_Ctrl" type="checkbox" checked="true" /> <span>Ctrl</span> +
+            <input id="customShortcut_Alt" name="customShortcut_Alt" type="checkbox" /> <span>Alt</span> +
+            <input id="customShortcut_Shift" name="customShortcut_Shift" type="checkbox" /> Shift +
+            <select id="customShortcut" name="customShortcut" size="1">
+              <option value="45">Insert</option>
+              <option value="46">Delete</option>
+              <option value="8">Backspace</option>
+              <option value="36">Home</option>
+              <option value="35">End</option>
+              <option value="33">Page up</option>
+              <option value="34">Page down</option>
+              <option value="38">Up</option>
+              <option value="40">Down</option>
+              <option value="37">Left</option>
+              <option value="39">Right</option>
+              <option value="27">Escape</option>
+              <option value="112">F1</option>
+              <option value="113">F2</option>
+              <option value="114">F3</option>
+              <option value="115">F4</option>
+              <option value="116">F5</option>
+              <option value="117">F6</option>
+              <option value="118">F7</option>
+              <option value="119">F8</option>
+              <option value="120">F9</option>
+              <option value="121">F10</option>
+              <option value="122">F11</option>
+              <option value="123">F12</option>
+            </select>
+          </li>
+          <li>
+            <label for="showOnDoubleClick" title="Shows virtual keyboard when you double click on text field.">Show on double click</label>
+            <input id="showOnDoubleClick" name="showOnDoubleClick" type="checkbox" />
+          </li>
+          <li>
+            <label for="highlightKeysOnClick" title="Virtual keyboard's keys are highlighted when you click on them. It's easier to see if you have clicked the right key ;)">Highlight keys on click</label>
+            <input id="highlightKeysOnClick" name="highlightKeysOnClick" type="checkbox" />
+          </li>
+          <li>
+            <label for="useDragHandler" title="Check this if you prefer separated handler for dragging keyboard. This may help with &quot;sticky&quot; keyboard when typing fast.">Use separate drag handler</label>
+            <input id="useDragHandler" name="useDragHandler" type="checkbox" />
+          </li>
+        </ul>
+      </form>
+      <footer>
+        <div id="links">
+          <a class="rate lang" href="https://addons.opera.com/addons/extensions/details/virtual-keyboard/?display=en">Like this extension? Rate it!</a>
+          <a class="donate lang" href="http://bit.ly/c8XVKs">Donate developer &hearts;</a>
+          <a class="support lang" href="http://my.opera.com/sdrpl-addons/forums/forum.dml?id=49792">Problems, questions, ideas?</a>
+        </div>
+        <div id="copyrights">
+          <p>&copy; 2011 <a href="http://www.dawidpajak.com/">Dawid Pająk</a> (<a href="http://my.opera.com/sdrpl/">sdrpl</a>)</p>
+          <p><a href="http://my.opera.com/sdrpl-addons/forums/topic.dml?id=1018972">Help translate this extension to your language!</a></p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

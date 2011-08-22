@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title></title>
     <script type="text/javascript" src="js/layouts.js"></script>
+    <script type="text/javascript" src="lang.js"></script>
     <script type="text/javascript">
       window.addEventListener('load', function()
       {
@@ -68,16 +70,20 @@
         opera.extension.addEventListener('connect', function(e)
         {
           e.source.postMessage({ 'virtualKeyboardOexBroadcast': { 'config': {
-            'defaultLayout':         keyboardLayouts[widget.preferences.defaultLayout] || keyboardLayouts['us'],
-            'defaultLayoutCode':    (widget.preferences.defaultLayout                  || 'us'),
+            'defaultLayout':         keyboardLayouts[widget.preferences.defaultLayout] || 
+                                     keyboardLayouts[lang.meta.defaultLayout] || 
+                                     keyboardLayouts['us'],
+            'defaultLayoutCode':    (widget.preferences.defaultLayout || 
+                                     lang.meta.defaultLayout || 
+                                     'us'),
             'keyboardLayouts':       keyboardLayoutsList,
-            'customShortcut_Ctrl':  (widget.preferences.customShortcut_Ctrl            != 'false'),
-            'customShortcut_Alt':   (widget.preferences.customShortcut_Alt             == 'true'),
-            'customShortcut_Shift': (widget.preferences.customShortcut_Shift           == 'true'),
-            'customShortcut':        widget.preferences.customShortcut                 || 45,
-            'showOnDoubleClick':    (widget.preferences.showOnDoubleClick              == 'true'),
-            'highlightKeysOnClick': (widget.preferences.highlightKeysOnClick           == 'true'),
-            'useDragHandler':       (widget.preferences.useDragHandler                 == 'true')
+            'customShortcut_Ctrl':  (widget.preferences.customShortcut_Ctrl != 'false'),
+            'customShortcut_Alt':   (widget.preferences.customShortcut_Alt == 'true'),
+            'customShortcut_Shift': (widget.preferences.customShortcut_Shift == 'true'),
+            'customShortcut':        widget.preferences.customShortcut || 45,
+            'showOnDoubleClick':    (widget.preferences.showOnDoubleClick == 'true'),
+            'highlightKeysOnClick': (widget.preferences.highlightKeysOnClick == 'true'),
+            'useDragHandler':       (widget.preferences.useDragHandler == 'true')
           }}});
         }, false);
         

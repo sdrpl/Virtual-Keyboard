@@ -15,7 +15,7 @@
          */
         var defaultLayout = document.querySelector('#defaultLayout');
         
-        defaultLayout.value = widget.preferences.defaultLayout || 'us';
+        defaultLayout.value = widget.preferences.defaultLayout || lang.meta.defaultLayout || 'us';
         
         defaultLayout.addEventListener('change', function()
         {
@@ -266,9 +266,9 @@
       </form>
       <footer>
         <div id="links">
-          <a class="rate lang" href="https://addons.opera.com/addons/extensions/details/virtual-keyboard/?display=en">Like this extension? Rate it!</a>
-          <a class="donate lang" href="http://bit.ly/c8XVKs">Donate developer &hearts;</a>
-          <a class="support lang" href="http://my.opera.com/sdrpl-addons/forums/forum.dml?id=49792">Problems, questions, ideas?</a>
+          <a class="rate" href="https://addons.opera.com/addons/extensions/details/virtual-keyboard/?display=en">Like this extension? Rate it!</a>
+          <a class="donate" href="http://bit.ly/c8XVKs">Donate developer &hearts;</a>
+          <a class="support" href="http://my.opera.com/sdrpl-addons/forums/forum.dml?id=49792">Problems, questions, ideas?</a>
         </div>
         <div id="copyrights">
           <p>&copy; 2011 <a href="http://www.dawidpajak.com/">Dawid Pająk</a> (<a href="http://my.opera.com/sdrpl/">sdrpl</a>)</p>

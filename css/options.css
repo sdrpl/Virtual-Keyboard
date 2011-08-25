@@ -4,8 +4,9 @@ body
   font-weight: normal;
   font-size: 14px;
   color: #000;
-  background: -o-linear-gradient(top, #f8f3ea, #fff 20px);
-  background: linear-gradient(top, #f8f3ea, #fff 20px);
+  background-image: -o-linear-gradient(top, #f8f3ea, #fff 20px);
+  background-image: linear-gradient(top, #f8f3ea, #fff 20px);
+  background-repeat: no-repeat;
   padding: 0;
   margin: 0;
 }

@@ -92,6 +92,15 @@
        */
       if (e.target != lang) select.style.display = 'none !important';
     }, false);
+    keyboard.addEventListener('mousedown', function(e)
+    {
+      /**
+       * Prevent other DOM elements from losing focus. For example:
+       * prevents some layers, menus from hiding on document click.
+       */
+      e.preventDefault();
+      e.stopPropagation();
+    }, false);
     keyboard.addEventListener('contextmenu', function(e)
     {
       /**

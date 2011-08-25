@@ -22,7 +22,7 @@ var lang = {
         innerHTML: 'Klawiatura Ekranowa &ndash; preferencje'
       },
       defaultLayout: {
-        contentText: 'Domyślny układ',
+        innerText: 'Domyślny układ',
         title: 'To jest domyślny układ klawiatury kiedy otwierasz ją po raz pierwszy na stronie lub odświeżasz stronę. Zawsze możesz tymczasowo zmienić bieżący układ klikając niebieski przycisk w prawym dolnym rogu klawiatury.'
       },
       showButton: {

@@ -2,8 +2,10 @@
 <widget xmlns="http://www.w3.org/ns/widgets" defaultlocale="en" version="2.0.1">
   <name xml:lang="en">Virtual Keyboard</name>
   <name xml:lang="pl">Klawiatura Ekranowa</name>
+  <name xml:lang="el">Virtual Keyboard</name>
   <description xml:lang="en">Virtual keyboard whenever you need it. Protect your passwords. Be safe.</description>
   <description xml:lang="pl">Klawiatura ekranowa zawsze pod ręką. Chroń swoje hasła. Pozostań bezpieczny.</description>
+  <description xml:lang="el">Ένα εικονικό πληκτρολόγιο οποτεδήποτε το χρειάζεσθε. Προστατεύστε τους κωδικούς σας. Γίνεται ασφαλείς.</description>
   <author href="http://www.dawidpajak.com/">Dawid Pająk</author>
   <icon src="img/64.png" />
   <preference name="defaultLayout"        value="[]" />

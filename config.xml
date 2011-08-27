@@ -8,9 +8,7 @@
   <description xml:lang="el">Ένα εικονικό πληκτρολόγιο οποτεδήποτε το χρειάζεσθε. Προστατεύστε τους κωδικούς σας. Γίνεται ασφαλείς.</description>
   <author href="http://www.dawidpajak.com/">Dawid Pająk</author>
   <icon src="img/64.png" />
-  <preference name="defaultLayout"        value="[]" />
-  <preference name="defaultLayoutCode"    value="us" />
-  <preference name="keyboardLayouts"      value="[]" />
+  <preference name="defaultLayoutCode"    value="" />
   <preference name="showButton"           value="true" />
   <preference name="toolbarIcon"          value="18" />
   <preference name="customShortcut_Ctrl"  value="true" />

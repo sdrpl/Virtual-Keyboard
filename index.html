@@ -70,10 +70,10 @@
         opera.extension.addEventListener('connect', function(e)
         {
           e.source.postMessage({ 'virtualKeyboardOexBroadcast': { 'config': {
-            'defaultLayout':         keyboardLayouts[widget.preferences.defaultLayout] || 
+            'defaultLayout':         keyboardLayouts[widget.preferences.defaultLayoutCode] || 
                                      keyboardLayouts[lang.meta.defaultLayout] || 
                                      keyboardLayouts['us'],
-            'defaultLayoutCode':    (widget.preferences.defaultLayout || 
+            'defaultLayoutCode':    (widget.preferences.defaultLayoutCode || 
                                      lang.meta.defaultLayout || 
                                      'us'),
             'keyboardLayouts':       keyboardLayoutsList,

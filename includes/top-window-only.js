@@ -267,7 +267,7 @@
           /**
            * Leave full Enter name when there's enough space (13 keys in a row).
            */
-          keyboard.querySelector('.enter-' + keyboard.id).value = '\u21b5';
+          keyboard.querySelector('.enter-' + keyboard.id).value = '\u23ce';
         }
         
         keyboard.querySelector('.shift-' + keyboard.id).value = '\u21e7';
@@ -558,7 +558,7 @@
             /**
              * Leave full Enter name when there's enough space (13 keys in a row).
              */
-            keyboard.querySelector('.enter-' + keyboard.id).value = '\u21b5';
+            keyboard.querySelector('.enter-' + keyboard.id).value = '\u23ce';
           }
         }
       }

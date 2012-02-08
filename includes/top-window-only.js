@@ -126,13 +126,14 @@
     dragHandler.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sFHg8xEBy9uXsAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAAUElEQVQ4y2NgIAxSGSgAqQwMDP/JNQSm+T85hqBrJskQdEX/SQmTVCwasPFTCTmbkAEYhuDyMyGcSjUXUCUMqBILVEkHVEmJVMkLVMmNBAEAaDc73OIUnEsAAAAASUVORK5CYII=';
     keyboard.appendChild(dragHandler);
     
+    var li;
     /**
      * Append keyboard icons.
      */
     var icons = document.createElement('ul');
     keyboard.appendChild(icons);
     
-    var li = document.createElement('li');
+    li = document.createElement('li');
     icons.appendChild(li);
     
     var lang       = document.createElement('button');
@@ -147,7 +148,7 @@
     }, false);
     li.appendChild(lang);
     
-    var li = document.createElement('li');
+    li = document.createElement('li');
     icons.appendChild(li);
     
     var close       = document.createElement('button');
@@ -247,7 +248,7 @@
               /**
                * Update field's value.
                */
-              opera.extension.postMessage({ 'keyClicked': true, 'value': this.value });
+              opera.extension.postMessage({'keyClicked': true, 'value': this.value});
               
               /**
                * Disable Shift and Alt.
@@ -282,7 +283,7 @@
     var select = document.createElement('select');
     select.addEventListener('change', function()
     {
-      opera.extension.postMessage({ 'requestLayout': this.value });
+      opera.extension.postMessage({'requestLayout': this.value});
     }, false);
     keyboard.appendChild(select);
     
@@ -383,14 +384,14 @@
         
         switch (index)
         {
-          case 'c':   index = 1; break;
-          case 's':   index = 2; break;
-          case 'a':   index = 3; break;
-          case 'cs':  index = 4; break;
-          case 'ca':  index = 5; break;
-          case 'sa':  index = 6; break;
-          case 'csa': index = 7; break;
-          default:    index = 0;
+          case 'c':index = 1;break;
+          case 's':index = 2;break;
+          case 'a':index = 3;break;
+          case 'cs':index = 4;break;
+          case 'ca':index = 5;break;
+          case 'sa':index = 6;break;
+          case 'csa':index = 7;break;
+          default:index = 0;
         }
         
         /**
@@ -412,7 +413,7 @@
         /**
          * Keep focus on field.
          */
-        opera.extension.postMessage({ 'keepFocus': true });
+        opera.extension.postMessage({'keepFocus': true});
       }
     };
     
@@ -441,7 +442,7 @@
       /**
        * Keep focus on field.
        */
-      opera.extension.postMessage({ 'keepFocus': true });
+      opera.extension.postMessage({'keepFocus': true});
     };
     
     /**
@@ -490,7 +491,9 @@
         select.style.display = 'none !important';
       }
       
-      if (e.target.nodeName != 'INPUT' && e.target.nodeName != 'TEXTAREA' && 
+      var nodeName = e.target.nodeName.toLowerCase();
+      
+      if (nodeName != 'input' && nodeName != 'textarea' && 
           !keyboard.contains(e.target))
       {
         /**
@@ -538,8 +541,8 @@
         layout         = e.data.changeLayout;
         lang.innerText = layout[0].lang;
         
-        var layoutRegExp    = /(^|\s)(ansi|iso)\-layout\-\S+(\s|$)/;
-        keyboard.className  = keyboard.className.replace(layoutRegExp, '');
+        var layoutRegExp   = /(^|\s)(ansi|iso)\-layout\-\S+(\s|$)/;
+        keyboard.className = keyboard.className.replace(layoutRegExp, '');
         
         rebuildKeyboard();
         specialKeys.disableCaps();

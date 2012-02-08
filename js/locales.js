@@ -10,6 +10,7 @@ window.addEventListener('DOMContentLoaded', function()
         showButton: '[for="showButton"]',
         toolbarIcon: '[for="toolbarIcon"]',
         customShortcut: '[for="customShortcut"]',
+        showOnClick: '[for="showOnClick"]',
         showOnDoubleClick: '[for="showOnDoubleClick"]',
         highlightKeysOnClick: '[for="highlightKeysOnClick"]',
         useDragHandler: '[for="useDragHandler"]'
@@ -32,16 +33,17 @@ window.addEventListener('DOMContentLoaded', function()
     };
     
     var page = document.location.pathname.slice(1, -5);
+    var s, t;
     
     switch (page)
     {
       case 'options':
-        var s = langSelectors.options;
-        var t = lang.translation.options;
+        s = langSelectors.options;
+        t = lang.translation.options;
         break;
       case 'release-notes':
-        var s = langSelectors.releaseNotes;
-        var t = lang.translation.releaseNotes;
+        s = langSelectors.releaseNotes;
+        t = lang.translation.releaseNotes;
         break;
     }
     

@@ -63,6 +63,10 @@ var lang = {
         innerText: 'Keyboard shortcut',
         title: 'Note that some keyboard shortcuts may already be reserved by Opera browser or your operating system. In such case it won\'t work.'
       },
+      showOnClick: {
+        innerText: 'Show on click',
+        title: 'Shows virtual keyboard when you click on text field.'
+      },
       showOnDoubleClick: {
         innerText: 'Show on double click',
         title: 'Shows virtual keyboard when you double click on text field.'

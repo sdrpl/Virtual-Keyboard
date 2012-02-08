@@ -115,6 +115,18 @@
         }, false);
         
         /**
+         * Show keyboard on click.
+         */
+        var showOnClick = document.querySelector('#showOnClick');
+        
+        showOnClick.checked = (widget.preferences.showOnClick == 'true');
+        
+        showOnClick.addEventListener('click', function()
+        {
+          widget.preferences.showOnClick = this.checked;
+        }, false);
+        
+        /**
          * Show keyboard on double click.
          */
         var showOnDoubleClick = document.querySelector('#showOnDoubleClick');
@@ -218,14 +230,14 @@
           </li>
           <li>
             <label for="toolbarIcon" title="Change icon displayed in toolbar's button if you think the default one is not cool enough ;)">Button's icon</label>
-            <input name="toolbarIcon" type="radio" value="18" checked="checked" /> <img src="img/18.png" alt="Default" />
+            <input id="toolbarIcon" name="toolbarIcon" type="radio" value="18" checked="checked" /> <img src="img/18.png" alt="Default" />
             <input name="toolbarIcon" type="radio" value="oxygen" /> <img src="img/oxygen.png" alt="Oxygen" title="Oxygen" />
             <input name="toolbarIcon" type="radio" value="google" /> <img src="img/google.png" alt="Google" title="Google" />
             <input name="toolbarIcon" type="radio" value="youtube" /> <img src="img/youtube.png" alt="YouTube" title="YouTube" />
           </li>
           <li>
             <label for="customShortcut" title="Note that some keyboard shortcuts may already be reserved by Opera browser or your operating system. In such case it won't work.">Keyboard shortcut</label>
-            <input id="customShortcut_Ctrl" name="customShortcut_Ctrl" type="checkbox" checked="true" /> <span>Ctrl</span> +
+            <input id="customShortcut_Ctrl" name="customShortcut_Ctrl" type="checkbox" checked="checked" /> <span>Ctrl</span> +
             <input id="customShortcut_Alt" name="customShortcut_Alt" type="checkbox" /> <span>Alt</span> +
             <input id="customShortcut_Shift" name="customShortcut_Shift" type="checkbox" /> Shift +
             <select id="customShortcut" name="customShortcut" size="1">
@@ -254,6 +266,10 @@
               <option value="122">F11</option>
               <option value="123">F12</option>
             </select>
+          </li>
+          <li>
+            <label for="showOnClick" title="Shows virtual keyboard when you click on text field.">Show on click</label>
+            <input id="showOnClick" name="showOnClick" type="checkbox" />
           </li>
           <li>
             <label for="showOnDoubleClick" title="Shows virtual keyboard when you double click on text field.">Show on double click</label>

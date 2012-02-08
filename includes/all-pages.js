@@ -104,7 +104,7 @@
           /**
            * If top window document is in another domain.
            */
-          opera.extension.postMessage({ 'showKeyboard': true });
+          opera.extension.postMessage({'showKeyboard': true});
         }
       },
       'hide': function()
@@ -122,58 +122,77 @@
           /**
            * If top window document is in another domain.
            */
-          opera.extension.postMessage({ 'hideKeyboard': true });
+          opera.extension.postMessage({'hideKeyboard': true});
         }
       }
     };
     
     /**
      * Add event listeners to all text fields.
+     * Thanks to Arseny Krasnov who suggested a better solution 
+     * to capture events from all the text fields :)
      */
-    var addEventListenersTo = function(node)
+    var onTextFieldClickListener = function(e)
     {
-      if (node.nodeName == 'TEXTAREA' ||
+      var nodeName = e.target.nodeName.toLowerCase();
+      
+      if (nodeName == 'textarea' ||
+          (nodeName == 'input' &&
            ('checkbox|radio|submit|reset|file|hidden|image|button|' +
             'datetime|datetime-local|date|month|week|range|color')
-            .split('|').indexOf(node.type) < 0)
+            .split('|').indexOf(e.target.type) < 0))
       {
         /**
          * Is text field.
          */
         
-        if (config.showOnDoubleClick)
+        if (!config.showOnDoubleClick)
         {
-          /**
-           * Show keyboard on field double click.
-           */
-          node.addEventListener('dblclick', function()
+          if (!e.target.virtualKeyboardOexClickedTimeoutHandler)
           {
             /**
-             * Show keyboard.
+             * Wait 250ms for second click.
              */
-            keyboard.show();
-          }, false);
+            e.target.virtualKeyboardOexClickedTimeoutHandler = window.setTimeout(function()
+            {
+              /**
+               * Single click detected.
+               */
+              delete e.target.virtualKeyboardOexClickedTimeoutHandler;
+              keyboard.show();
+            }, 250);
+            return;
+          }
+          
+          /**
+           * Do not respond to double click event.
+           */
+          window.clearTimeout(e.target.virtualKeyboardOexClickedTimeoutHandler);
+          delete e.target.virtualKeyboardOexClickedTimeoutHandler;
+          return;
         }
+        
+        /**
+         * Show keyboard.
+         */
+        keyboard.show();
       }
-    };
-    
-    /**
-     * Present fields.
-     */
-    var textFields = document.querySelectorAll('input, textarea');
-    
-    for (var i = 0; i < textFields.length; ++i)
-    {
-      addEventListenersTo(textFields[i]);
     }
     
-    /**
-     * Future fields.
-     */
-    document.addEventListener('DOMNodeInsertedIntoDocument', function(e)
+    if (config.showOnClick)
     {
-      addEventListenersTo(e.target);
-    }, false);
+      /**
+       * Show keyboard on field click.
+       */
+      document.addEventListener('click', onTextFieldClickListener);
+    }
+    else if (config.showOnDoubleClick)
+    {
+      /**
+       * Show keyboard on field double click.
+       */
+      document.addEventListener('dblclick', onTextFieldClickListener);
+    }
     
     /**
      * Message received.
@@ -207,7 +226,7 @@
           case 'Space':  insert = ' '; break;
           case 'Bksp':   insert = ''; break;
           case 'Enter':  
-          case '\u21b5': insert = focused.nodeName == 'TEXTAREA'
+          case '\u21b5': insert = focused.nodeName.toLowerCase() == 'textarea'
                                 ? '\r\n' : null; break;
           default:       insert = data.value;
         }
@@ -259,7 +278,8 @@
         /**
          * Auto scroll textarea on 'Enter'.
          */
-        if (focused.nodeName == 'TEXTAREA' && focused.value.length > newCursorPosition)
+        if (focused.nodeName.toLowerCase() == 'textarea' && 
+            focused.value.length > newCursorPosition)
           focused.scrollTop = focused.scrollHeight;
         
         /**
@@ -301,8 +321,9 @@
      */
     document.addEventListener('click', function(e)
     {
-      if (window != window.top && 
-          e.target.nodeName != 'INPUT' && e.target.nodeName != 'TEXTAREA')
+      var nodeName = e.target.nodeName.toLowerCase();
+      
+      if (window != window.top && nodeName != 'input' && nodeName != 'textarea')
       {
         /**
          * Hide keyboard, but exclude clicks on inputs and textareas.

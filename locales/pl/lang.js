@@ -37,6 +37,10 @@ var lang = {
         innerText: 'Skrót klawiszowy',
         title: 'Niektóre kombinacje klawiszy mogą być zajęte przez przeglądarkę Opera lub przez Twój system operacyjny. W takim wypadku skrót nie zadziała.'
       },
+      showOnClick: {
+        innerText: 'Na kliknięcie',
+        title: 'Pokazuje klawiaturę ekranową, gdy klikniesz pole tekstowe.'
+      },
       showOnDoubleClick: {
         innerText: 'Podwójne kliknięcie',
         title: 'Pokazuje klawiaturę ekranową, gdy klikniesz dwa razy pole tekstowe.'

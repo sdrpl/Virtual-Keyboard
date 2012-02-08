@@ -15,6 +15,7 @@
   <preference name="customShortcut_Alt"   value="false" />
   <preference name="customShortcut_Shift" value="false" />
   <preference name="customShortcut"       value="45" />
+  <preference name="showOnClick"          value="false" />
   <preference name="showOnDoubleClick"    value="false" />
   <preference name="highlightKeysOnClick" value="false" />
   <preference name="useDragHandler"       value="false" />

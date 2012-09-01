@@ -26,7 +26,7 @@ a:hover
 
 div#container
 {
-  width: 600px;
+  width: 750px;
   background-color: #eee;
   box-shadow: inset 0 0 20px #ccc, 0 0 100px #eee;
   border-radius: 5px;
@@ -74,7 +74,7 @@ ul.options > li:not(:last-child)
 
 ul.options > li label
 {
-  width: 220px;
+  width: 320px;
   display: block;
   float: left;
 }
@@ -91,7 +91,7 @@ img
 
 footer
 {
-  width: 600px;
+  width: 750px;
   line-height: 15px;
   text-align: center;
   position: absolute;

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * This is example language file. Use it for new translations.
  * Please, translate ALL strings between single quotes.
  * 
@@ -125,4 +125,3 @@ var lang = {
     }
   }
 };
-

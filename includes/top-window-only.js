@@ -80,6 +80,8 @@
     keyboard.className += config.useDragHandler ? '' : ' drag-' + keyboard.id;
     keyboard.addEventListener('click', function(e)
     {
+      if (e.target == select) return;
+      
       /**
        * Prevent other DOM elements from losing focus. For example:
        * prevents some layers, menus from hiding on document click.
@@ -88,12 +90,18 @@
       e.stopPropagation();
       
       /**
-       * Hide layout select list (but not when lang button is clicked).
+       * Hide layout select list (but not when lang button 
+       * or select list itself is clicked).
        */
-      if (e.target != lang) select.style.display = 'none !important';
+      if (e.target != lang && e.target != select)
+      {
+        select.style.display = 'none !important';
+      }
     }, false);
     keyboard.addEventListener('mousedown', function(e)
     {
+      if (e.target == select) return;
+      
       /**
        * Prevent other DOM elements from losing focus. For example:
        * prevents some layers, menus from hiding on document click.
@@ -453,7 +461,10 @@
       /**
        * Prevent text selection when dragging.
        */
-      e.preventDefault();
+      if (e.target != select)
+      {
+        e.preventDefault();
+      }
       
       /**
        * Save keyboard's clicked point coords.

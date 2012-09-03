@@ -1,27 +1,4 @@
-/**
- * This is example language file. Use it for new translations.
- * Please, translate ALL strings between single quotes.
- * 
- * Do NOT translate it word for word. Try to keep string's length, 
- * but remember about sense - people speaking your language MUST understand it
- * and it MUST be written correctly according to your language's rules.
- * 
- * If you need to use single quote char in your string 
- * put backslash before it, ie. \'.
- * 
- * This file MUST be encoded with UTF-8! Do not use default Windows' Notepad
- * to edit this file. I recommend you Notepad++ for example.
- * http://notepad-plus-plus.org/
- * 
- * Change parent directory's name to your language code. You can find correct
- * code by pressing Ctrl+F12 in Opera. Look for "Language" section. The code is
- * placed between brackets, ie. en for English, ru for Russian.
- * 
- * Send completed translation to sdrpl@myopera.com with subject: 
- * "Virtual Keyboard translation". It will be reviewed and published as soon
- * as possible (next extension's release probably).
- */
-var lang = {
+lang = {
   meta: {
     extension: {
       name: 'Віртуальна клавіатура', // Extension name.

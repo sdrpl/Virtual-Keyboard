@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', function()
 {
-  if ('meta' in lang)
+  if ('translation' in lang)
   {
     var langSelectors = {
       options: {

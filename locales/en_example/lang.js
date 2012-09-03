@@ -21,7 +21,7 @@
  * "Virtual Keyboard translation". It will be reviewed and published as soon
  * as possible (next extension's release probably).
  */
-var lang = {
+lang = {
   meta: {
     extension: {
       name: 'Virtual Keyboard', // Extension name.

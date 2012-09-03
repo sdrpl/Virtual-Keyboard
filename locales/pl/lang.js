@@ -1,4 +1,4 @@
-var lang = {
+lang = {
   meta: {
     extension: {
       name: 'Klawiatura Ekranowa',

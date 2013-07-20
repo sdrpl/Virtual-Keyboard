@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" defaultlocale="en" version="2.1">
+<widget xmlns="http://www.w3.org/ns/widgets" defaultlocale="en" version="2.1.1">
   <name xml:lang="en">Virtual Keyboard</name>
   <name xml:lang="pl">Klawiatura Ekranowa</name>
   <name xml:lang="el">Virtual Keyboard</name>
   <name xml:lang="uk">Віртуальна клавіатура</name>
+  <name xml:lang="fr">Clavier Virtuel</name>
   <description xml:lang="en">Virtual keyboard whenever you need it. Protect your passwords. Be safe.</description>
   <description xml:lang="pl">Klawiatura ekranowa zawsze pod ręką. Chroń swoje hasła. Pozostań bezpieczny.</description>
   <description xml:lang="el">Ένα εικονικό πληκτρολόγιο οποτεδήποτε το χρειάζεσθε. Προστατεύστε τους κωδικούς σας. Γίνεται ασφαλείς.</description>
   <description xml:lang="uk">Віртуальна клавіатура - там, де тобі необхідно. Захисти свої паролі. Бережи себе.</description>
+  <description xml:lang="fr">Un clavier virtuel partout où vous en avez besoin. Rend plus surs vos mots de passe. Optez pour la sécurité.</description>
   <author href="http://www.dawidpajak.com/">Dawid Pająk</author>
   <icon src="img/64.png" />
   <preference name="defaultLayoutCode"    value="" />
